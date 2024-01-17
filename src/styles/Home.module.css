@@ -1,0 +1,17 @@
+.centerFlex1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.centerFlex2{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.shadowType1{
+    box-shadow: #5e5e5e26 0px 15px 25px, #0000000d 0px 5px 10px;
+
+}
