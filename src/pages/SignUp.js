@@ -11,7 +11,7 @@ function SignUp({setAuth}) {
   const [password,setPassword] = useState('');
   const handleSignup = async() =>{
     try{
-      const response = await axios.post('http://localhost:8080/users/register',{
+      const response = await axios.post('https://sparkle-server-lyart.vercel.app/users/register',{
         username,
         password,
       })

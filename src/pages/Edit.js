@@ -36,7 +36,7 @@ function Edit() {
       console.log(id);
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:8080/posts/${id}`,
+        `https://sparkle-server-lyart.vercel.app/posts/${id}`,
         {
           title,
           subtitle,

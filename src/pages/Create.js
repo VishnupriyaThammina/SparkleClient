@@ -45,7 +45,7 @@ const navigate = useNavigate();
         thumbnail:thumb,
         
       };
-      const response = await axios.post('http://localhost:8080/posts/', postData, {
+      const response = await axios.post('https://sparkle-server-lyart.vercel.app/posts/', postData, {
         headers: {
           token: `${token}`,
         },

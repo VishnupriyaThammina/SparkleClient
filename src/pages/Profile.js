@@ -23,7 +23,7 @@ function Profile() {
           return;
         }
   
-        const response = await axios.get('http://localhost:8080/users/current' ,{ headers: {
+        const response = await axios.get('https://sparkle-server-lyart.vercel.app/users/current' ,{ headers: {
           token: `${token}`,
       },});
   
@@ -47,7 +47,7 @@ function Profile() {
         return;
       }
 
-      const response = await axios.get('http://localhost:8080/posts/userposts' ,{ headers: {
+      const response = await axios.get('https://sparkle-server-lyart.vercel.app/posts/userposts' ,{ headers: {
         token: `${token}`,
     },});
     setPosts(response.data)
