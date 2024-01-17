@@ -41,8 +41,8 @@ function Edit() {
           title,
           subtitle,
           content,
-          thumb,
-          url
+          thumbnail:thumb,
+          banner:url
         },
         {
           headers: {
@@ -62,6 +62,20 @@ function Edit() {
     }
   };
   
+  useEffect(()=>{
+    const fetchData = async()=>{
+try{
+const res = await axios.get( `https://sparkle-server-lyart.vercel.app/posts/${id}`);
+const postData = res.data;
+setTitle(postData.title||'')
+setSubtitle(postData.subtitle||'')
+setContent(postData.content||'')
+setThumb(postData.thumbnail||'')
+setUrl(postData.banner)
+}catch(error){console.log("Error in fetch post data")}
+    }
+    fetchData()
+  },[id])// after every pageload and id monitoring
   return (
 <>
 <Grid container className={style.centerFlex1} style={{width:"100%", height:"100%"}}>

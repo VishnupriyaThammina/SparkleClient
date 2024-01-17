@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
-import { Button, Grid, Typography} from '@mui/material'
+import { Button, Grid,CircularProgress, Typography} from '@mui/material'
 import img11 from "../images/Sparkle.png"
 import Card from '../components/Card'
 import { Link ,Outlet} from 'react-router-dom'
 import axios from 'axios'
 function Profile() {
+  const [loading, setLoading] = useState(true); 
+  const [loading1, setLoading1] = useState(true); 
+
   const [userData,setUserData] = useState({
     username:'',
     bio:'',
@@ -28,8 +31,10 @@ function Profile() {
       },});
   
         setUserData(response.data);  
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching user data', error.response.data);
+        setLoading(false);
       }
     };
   
@@ -51,7 +56,10 @@ function Profile() {
         token: `${token}`,
     },});
     setPosts(response.data)
-    }catch{
+    setLoading1(false);
+    }catch(error){
+      console.log("Error in fetching posts")
+      setLoading1(false);
 
     }
     }
@@ -96,14 +104,21 @@ function Profile() {
   <Grid item container style={{width:"90%",margin:"1vh"}}>
 <Typography variant='h6' fontWeight="bold" style={{color:"rgba(114,120,136,.6)"}}>BLOGS</Typography>
   </Grid>
+  {loading1 ? (  <Grid item container display="flex" flexDirection="row"  style={{width:"90%",margin:"1vh"}}>
+    <CircularProgress style={{ color: '#fff' }} /></Grid>):(  <>
   <Grid item container display="flex" flexDirection="row"  style={{width:"90%",margin:"1vh"}}>
+
+
+
   {posts.map((post) => {
     console.log(post);
     return <Card key={post._id} thumbnail={post.thumbnail} id={post._id} title={post.title} subtitle={post.subtitle} />;
 
   })}
-  </Grid>
  
+  </Grid>
+  </>
+  )}
 </Grid>
 
   </Grid>

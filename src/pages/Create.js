@@ -17,6 +17,7 @@ const navigate = useNavigate();
     setTitle(e.target.value);
   }
   const handleSubTitle=(e)=>{
+
     setSubtitle(e.target.value);
   }
   const handleContent = (value) => {
@@ -34,6 +35,7 @@ const navigate = useNavigate();
     try {
       const token = localStorage.getItem('token');
       if (!token) {
+        
         console.error('Token not available');
         return;
       }
@@ -122,13 +124,13 @@ navigate('/');
       
 <img src={thumb} style={{width:"50%",height:"100%"}}/>
 </Grid>
-  <Grid item container display="flex" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"15vh"}}>
+  <Grid item container display="flex" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"50%"}}>
     <Typography variant='h3'>{title}</Typography>
   </Grid>
-  <Grid item  container display="flex" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"5vh"}}>
+  <Grid item  container display="flex" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"25%",marginTop:"5vh"}}>
     <Typography variant='subtitle1' style={{color:"#5e5e5e"}}>{subtitle}</Typography>
   </Grid>
-  <Grid item  container className={style.centerFlex1}>
+  <Grid item  container className={style.centerFlex1} style={{marginTop:"5vh"}}>
 <div dangerouslySetInnerHTML={{__html:content}} style={{ width:"100%", fontFamily: "'Arial', sans-serif"}}/>
 
   </Grid>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid} from '@mui/material'
+import { Grid, Tooltip} from '@mui/material'
 import logo from '../images/sparkleBg.png'
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
@@ -31,22 +31,24 @@ function Nav({setAuth}) {
     border: '1px solid rgba(255, 255, 255, 0.125)',    boxShadow: '0px 10px 36px 0px rgba(0, 0, 0, 0.16), 0px 0px 0px 1px rgba(0, 0, 0, 0.06)',width:"50%",height:"70%"}}>
         <Grid item  display="flex" justifyContent="center" alignItems="center" style={{width:"20%",height:"100%",}} >
         <Link to="/"> 
-        <Grid  display="flex" justifyContent="center" alignItems="center" style={{width:"100%",height:"100%"}}>
-        <img src={logo}  to="/" width="50%" height="100%" alt="logo"/>
-        </Grid>
+        <Tooltip title="Home" arrow sx={{cursor:"pointer"}}>   <Grid  display="flex" justifyContent="center" alignItems="center" style={{width:"100%",height:"100%"}}>
+          <img src={logo}  to="/" width="50%" height="100%" alt="logo"/>
+        </Grid></Tooltip>
 </Link>
         </Grid>
     <Grid item  display="flex" justifyContent="center" alignItems="center" style={{width:"20%",height:"100%"}} >
-    <Link to="/feed">   <SearchIcon style={{color:"white"}}/> </Link>
+    <Link to="/feed">    <Tooltip title="Feed" arrow sx={{cursor:"pointer"}}>   <SearchIcon style={{color:"white"}}/> </Tooltip> </Link>
     </Grid>
     <Grid item  display="flex" justifyContent="center" alignItems="center" style={{width:"20%",height:"100%"}} >
-    <Link to="/create">  <AddBoxOutlinedIcon style={{color:"white"}}/> </Link>
+    <Link to="/create">    <Tooltip title="Create post" arrow sx={{cursor:"pointer"}}>   <AddBoxOutlinedIcon style={{color:"white"}}/> </Tooltip></Link>
     </Grid>
     <Grid item  display="flex" justifyContent="center" alignItems="center" style={{width:"20%",height:"100%"}} >
-    <Link to="/profile">  <AccountCircleRoundedIcon style={{color:"white"}}/> </Link>
+    <Link to="/profile">     <Tooltip title="Profile" arrow sx={{cursor:"pointer"}}><AccountCircleRoundedIcon style={{color:"white"}}/></Tooltip> </Link>
     </Grid>
     <Grid item  display="flex" justifyContent="center" alignItems="center" style={{width:"20%",height:"100%"}} >
-    <LogoutRoundedIcon onClick={handleLogout} style={{color:"white"}}/> 
+   <Tooltip title="Logout" arrow sx={{cursor:"pointer"}}>
+   <LogoutRoundedIcon onClick={handleLogout} style={{color:"white"}}/> 
+   </Tooltip>
     </Grid>
         </Grid>
   

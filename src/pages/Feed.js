@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid,CircularProgress } from '@mui/material'
 import React,{useEffect,useState} from 'react'
 import style from '../styles/Home.module.css'
 import TextField from '@mui/material/TextField';
@@ -8,6 +8,7 @@ import Card from '../components/Card';
 import axios from 'axios';
 function Feed() {
   const [data,setData] = useState([]);
+  const [loading, setLoading] = useState(true); 
   useEffect(() => {
     const fetchRecentData = async () => {
       try {
@@ -26,8 +27,10 @@ function Feed() {
         });
     
         setData(response.data); // Update state with fetched data
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching recent data', error);
+        setLoading(false);
       }
     };    
 fetchRecentData()    
@@ -50,10 +53,14 @@ fetchRecentData()
       </IconButton>
 </Grid>
 <Grid container className={style.centerFlex1} style={{width:"100%",marginTop:"5vh"}} >
+{loading ? ( <CircularProgress style={{ color: '#fff' }} />):(
+  <>
+
 {data.map((post) => {
     console.log(post);
     return <Card key={post._id} thumbnail={post.thumbnail} id={post._id} title={post.title} subtitle={post.subtitle} />;
-  })}
+  })}  </>
+  )}
 </Grid>
 
 </Grid>
