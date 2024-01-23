@@ -36,7 +36,7 @@ function Edit() {
       console.log(id);
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `https://sparkle-server-lyart.vercel.app/posts/${id}`,
+        `http://localhost:8080/posts/${id}`,
         {
           title,
           subtitle,
@@ -65,7 +65,7 @@ function Edit() {
   useEffect(()=>{
     const fetchData = async()=>{
 try{
-const res = await axios.get( `https://sparkle-server-lyart.vercel.app/posts/${id}`);
+const res = await axios.get( `http://localhost:8080/posts/${id}`);
 const postData = res.data;
 setTitle(postData.title||'')
 setSubtitle(postData.subtitle||'')

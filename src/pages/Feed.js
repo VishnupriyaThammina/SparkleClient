@@ -20,7 +20,7 @@ function Feed() {
           return;
         }
     
-        const response = await axios.get('https://sparkle-server-lyart.vercel.app/posts/', {
+        const response = await axios.get('http://localhost:8080/posts/', {
           headers: {
             token: `${token}`,
           },

@@ -3,7 +3,6 @@ import { Button, Grid,Tooltip, Typography } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
 function Card(props) {
-  const truncatedTitle = props.title.length > 50 ? props.title.substring(0, 50) + '...' : props.title;
   return (
     <>
       <Grid
@@ -55,7 +54,7 @@ function Card(props) {
         >
           <Grid item display="flex" style={{ height: "50%",width:"90%",justifyContent:"flex-start",alignItems:"center"  }}>
             <Typography className="title" variant="h6">
-              {truncatedTitle}
+              {props.title}
             </Typography>
           </Grid>
          

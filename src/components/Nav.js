@@ -12,7 +12,7 @@ function Nav({setAuth}) {
   const handleLogout = async () => {
     console.log("Logout button clicked");
     try {
-      await axios.post('https://sparkle-server-lyart.vercel.app/users/logout');
+      await axios.post('http://localhost:8080/users/logout');
       localStorage.removeItem('token');
       setAuth(false);
       navigate('/login');

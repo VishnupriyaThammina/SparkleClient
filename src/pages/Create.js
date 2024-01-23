@@ -12,6 +12,7 @@ function Create() {
   const [title,setTitle] = useState();
   const [subtitle,setSubtitle] = useState();
   const [content, setContent] = useState('');
+  const [imgUp,setIm] = useState(null)
 const navigate = useNavigate();
   const handleTitle=(e)=>{
     setTitle(e.target.value);
@@ -30,8 +31,13 @@ const navigate = useNavigate();
     setThumb(e.target.value)
     }
 
+    function handleIm(e){
+      const file = e.target.files[0]
+      setIm(file)
+      }
   
-  const handlePost = async () => {
+  const handlePost = async (e) => {
+    e.preventDefault();
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -45,15 +51,22 @@ const navigate = useNavigate();
         content: content,
         banner:url,
         thumbnail:thumb,
-        
+        imgUp:imgUp,
       };
-      const response = await axios.post('https://sparkle-server-lyart.vercel.app/posts/', postData, {
-        headers: {
-          token: `${token}`,
-        },
-        content:content,
-      });
-    
+      console.log(postData.title)
+      const formData = new FormData();
+    formData.append('title', title);
+    formData.append('subtitle', subtitle);
+    formData.append('content', content);
+    formData.append('banner', url);
+    formData.append('thumbnail', thumb);
+    formData.append('imgUp', imgUp);
+    const response = await axios.post('http://localhost:8080/posts/', formData, {
+      headers: {
+        token: `${token}`,
+        "Content-Type": "multipart/form-data"
+      },
+    });
 navigate('/');
       
     } catch (error) {
@@ -65,23 +78,26 @@ navigate('/');
 
   return (
 <>
+<form>
+
+
 <Grid container className={style.centerFlex1} style={{width:"100%", height:"100%"}}>
   <Grid container className={style.centerFlex1} style={{width:"50%"}}>
 
   <Grid container display="flex" flexDirection="row" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"7vh"}}>
   <label style={{width:"25%"}} for="title"> Title:</label>
-    <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} onChange={handleTitle} id="title" type="text" />
+    <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} name="title" onChange={handleTitle} id="title" type="text" />
     </Grid> 
   <Grid container display="flex" flexDirection="row" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"7vh"}}>
   <label style={{width:"25%"}} for="sub-title">Sub title:</label>
     
-    <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} onChange={handleSubTitle} id="sub-title" type="text" />
+    <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} name="subtitle" onChange={handleSubTitle} id="subtitle" type="text" />
     </Grid> 
     <Grid container display="flex" flexDirection="row" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"7vh"}}>
 
   <label style={{width:"25%"}} for="sub-title">Image url:</label>
     
-    <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} type="url" onChange={handleEveryUpload}  id="img-preview" />
+    <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} type="url" onChange={handleEveryUpload} name="banner" id="img-preview" />
   
 
     </Grid> 
@@ -89,7 +105,15 @@ navigate('/');
 
 <label style={{width:"25%"}} for="sub-title">Thumbnail url:</label>
   
-  <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} type="url" onChange={handleThumbnail}  id="img-preview" />
+  <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}}  type="url" onChange={handleThumbnail} name="thumb" id="img-preview" />
+
+
+  </Grid> 
+  <Grid container display="flex" flexDirection="row" justifyContent="flex-start" alignItems="center"  style={{width:"100%",height:"7vh"}}>
+
+<label style={{width:"25%"}} for="img-up">upload Image:</label>
+  
+  <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} type="file" onChange={handleIm} name="imgUp" id="img-up" />
 
 
   </Grid> 
@@ -122,7 +146,7 @@ navigate('/');
     borderRadius: '12px',
     border: '1px solid rgba(255, 255, 255, 0.125)'   , boxShadow: '0px 10px 36px 0px rgba(0, 0, 0, 0.16), 0px 0px 0px 1px rgba(0, 0, 0, 0.06)'}}>
       
-<img src={thumb} style={{width:"50%",height:"100%"}}/>
+<img src={imgUp} style={{width:"50%",height:"100%"}}/>
 </Grid>
   <Grid item container display="flex" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"50%"}}>
     <Typography variant='h3'>{title}</Typography>
@@ -144,6 +168,7 @@ navigate('/');
 
 
 </Grid>
+</form>
 </>
   )
 }

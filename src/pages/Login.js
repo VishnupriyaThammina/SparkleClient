@@ -11,7 +11,7 @@ const [username, setUsername] = useState('');
 const [password,setPassword] = useState('');
 const handleLogin = async () => {
   try {
-    const response = await axios.post('https://sparkle-server-lyart.vercel.app/users/login', {
+    const response = await axios.post('http://localhost:8080/users/login', {
       username,
       password,
     });
@@ -42,18 +42,18 @@ const handleLogin = async () => {
 <Grid item container style={{width:"100%"}} className={style.centerFlex1} >
    <input type="text" placeholder='username' onChange={(e)=>{setUsername(e.target.value)}} style={{width:"90%",height:"4vh",border: "none",
     outline: "none",
-    appearance: "none",borderRadius:"5px",backgroundColor:"#eaf5ff" ,padding:"1vh" ,fontSize:"17px"}}/>
+    appearance: "none",borderRadius:"5px",backgroundColor:"#eaf5ff",marginBottom:"2vh"  ,padding:"1vh" ,fontSize:"17px"}}/>
 </Grid>
 
 <Grid item container style={{width:"100%"}} className={style.centerFlex1} >
    <input type="password" placeholder='password' onChange={(e)=>{setPassword(e.target.value)}} style={{width:"90%",height:"4vh",border: "none",
     outline: "none",
-    appearance: "none",borderRadius:"5px",backgroundColor:"#eaf5ff"  ,padding:"1vh" ,fontSize:"17px"}}/>
+    appearance: "none",borderRadius:"5px",backgroundColor:"#eaf5ff" ,marginBottom:"2vh" ,padding:"1vh" ,fontSize:"17px"}}/>
 </Grid>
 
-<Grid className={style.centerFlex1} style={{width:"100%",height:"5vh",padding:"1vh" }}   >
+<Grid className={style.centerFlex1} style={{width:"100%",height:"5vh" }}   >
    <Link to="/" style={{width:"100%"}}>
-   <Button variant='contained' onClick={handleLogin} style={{width:"100%",backgroundColor:"#000f5d"}} >Login</Button>
+   <Button variant='contained' onClick={handleLogin} style={{width:"100%",marginTop:"1vh",padding:"1vh",backgroundColor:"#000f5d"}} >Login</Button>
     </Link> 
 </Grid>
 </form>
