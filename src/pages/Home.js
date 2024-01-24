@@ -25,7 +25,9 @@ function Home() {
           },
         });
     
-        setData(response.data); // Update state with fetched data
+        setData(response.data);
+        console.log(data)
+         // Update state with fetched data
         setLoading(false);
 
       } catch (error) {
@@ -57,9 +59,13 @@ fetchRecentData()
 <Grid style={{width:"100%"}} >
 {loading ? ( <CircularProgress style={{ color: '#fff' }} />):(
   <>
-{data.map((post) => (
-  <Card key={post._id} thumbnail={post.thumbnail} id={post._id} title={post.title} subtitle={post.subtitle} />
-))}
+{data.map((post) => {
+  console.log(post);
+  return (
+    <Card key={post._id} thumbnail={`http://localhost:8080/${post.imgUp}`} id={post._id} title={post.title} subtitle={post.subtitle} />
+  );
+})}
+
 </>
   )}
 </Grid>

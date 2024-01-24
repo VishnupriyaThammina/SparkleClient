@@ -60,7 +60,7 @@ function Card(props) {
          
           <Grid
             item
-            contianer
+            container
             display="flex"
             justifyContent="center"
             alignItems="center"

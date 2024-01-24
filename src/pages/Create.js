@@ -12,7 +12,9 @@ function Create() {
   const [title,setTitle] = useState();
   const [subtitle,setSubtitle] = useState();
   const [content, setContent] = useState('');
-  const [imgUp,setIm] = useState(null)
+  const [file,setFile] = useState('')
+  const [img,setImg] = useState(null)
+
 const navigate = useNavigate();
   const handleTitle=(e)=>{
     setTitle(e.target.value);
@@ -32,12 +34,32 @@ const navigate = useNavigate();
     }
 
     function handleIm(e){
-      const file = e.target.files[0]
-      setIm(file)
+     
+      setFile(e.target.files)
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImg(reader.result);
+      };
+  
+      if (e.target.files[0]) {
+        reader.readAsDataURL(e.target.files[0]);
+      }
       }
   
   const handlePost = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.set('title', title);
+    formData.set('subtitle', subtitle);
+    formData.set('content', content);
+    formData.set('banner', url);
+    formData.set('thumbnail', thumb);
+    formData.set('file', file[0]);
+    const formDataObject = {};
+    formData.forEach((value, key) => {
+      formDataObject[key] = value;
+    });
+    console.log(formDataObject)
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -45,26 +67,20 @@ const navigate = useNavigate();
         console.error('Token not available');
         return;
       }
-      const postData = {
-        title: title,
-        subtitle: subtitle,
-        content: content,
-        banner:url,
-        thumbnail:thumb,
-        imgUp:imgUp,
-      };
-      console.log(postData.title)
-      const formData = new FormData();
-    formData.append('title', title);
-    formData.append('subtitle', subtitle);
-    formData.append('content', content);
-    formData.append('banner', url);
-    formData.append('thumbnail', thumb);
-    formData.append('imgUp', imgUp);
+      // const postData = {
+      //   title: title,
+      //   subtitle: subtitle,
+      //   content: content,
+      //   banner:url,
+      //   thumbnail:thumb,
+      //   file:file,
+      // };
+      // console.log(postData.title)
+    
     const response = await axios.post('http://localhost:8080/posts/', formData, {
       headers: {
         token: `${token}`,
-        "Content-Type": "multipart/form-data"
+        body:formData,
       },
     });
 navigate('/');
@@ -113,7 +129,7 @@ navigate('/');
 
 <label style={{width:"25%"}} for="img-up">upload Image:</label>
   
-  <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} type="file" onChange={handleIm} name="imgUp" id="img-up" />
+  <input style={{width:"65%",padding:"1vh",borderRadius:"10px"}} type="file" onChange={handleIm} name="file" id="img-up" />
 
 
   </Grid> 
@@ -146,7 +162,7 @@ navigate('/');
     borderRadius: '12px',
     border: '1px solid rgba(255, 255, 255, 0.125)'   , boxShadow: '0px 10px 36px 0px rgba(0, 0, 0, 0.16), 0px 0px 0px 1px rgba(0, 0, 0, 0.06)'}}>
       
-<img src={imgUp} style={{width:"50%",height:"100%"}}/>
+<img src={img || url} style={{width:"50%",height:"100%"}}/>
 </Grid>
   <Grid item container display="flex" justifyContent="flex-start" alignItems="center" style={{width:"100%",height:"50%"}}>
     <Typography variant='h3'>{title}</Typography>
