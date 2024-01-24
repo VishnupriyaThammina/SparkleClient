@@ -59,13 +59,9 @@ fetchRecentData()
 <Grid style={{width:"100%"}} >
 {loading ? ( <CircularProgress style={{ color: '#fff' }} />):(
   <>
-{data.map((post) => {
-  console.log(post);
-  return (
-    <Card key={post._id} thumbnail={`http://localhost:8080/${post.imgUp}`} id={post._id} title={post.title} subtitle={post.subtitle} />
-  );
-})}
-
+{data.map((post) => (
+  <Card key={post._id} thumbnail={`http://localhost:8080/${post.imgUp}`} id={post._id} title={post.title} subtitle={post.subtitle} />
+))}
 </>
   )}
 </Grid>
