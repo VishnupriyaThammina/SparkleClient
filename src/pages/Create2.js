@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
-function Create() {
+function Create2() {
   const [thumb,setThumb] = useState('https://media.assettype.com/freepressjournal/2023-10/f5c9fe2e-b602-4514-81e0-8c2ee0cba9b3/Our_overall_well_being_depends_on_both_our_mental_health_and_physical_health__and_hence_the_growing_.png');
   const [url,setUrl] = useState('https://www.blogtyrant.com/wp-content/uploads/2020/03/free-images-for-blog.png');
   const [title,setTitle] = useState();
@@ -196,4 +196,4 @@ navigate('/');
   )
 }
 
-export default Create
+export default Create2

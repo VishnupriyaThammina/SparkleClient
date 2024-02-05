@@ -12,6 +12,7 @@ import Editprofile from '../pages/Editprofile';
 import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import Del from '../pages/Del';
+import Create2 from '../pages/Create2';
 
 function Root() {
 const [auth, setAuth] = useState(false);
@@ -34,6 +35,7 @@ if(token){
             <Route index element={<Home />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/create2" element={<Create2 />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/editprofile" element={<Editprofile/>}/>

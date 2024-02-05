@@ -26,7 +26,7 @@ function Home() {
         });
     
         setData(response.data);
-        console.log(data)
+        // console.log(data)
          // Update state with fetched data
         setLoading(false);
 
@@ -60,7 +60,7 @@ fetchRecentData()
 {loading ? ( <CircularProgress style={{ color: '#fff' }} />):(
   <>
 {data.map((post) => (
-  <Card key={post._id} thumbnail={`http://localhost:8080/${post.imgUp}`} id={post._id} title={post.title} subtitle={post.subtitle} />
+  <Card key={post._id} thumbnail={post.imgUp} id={post._id} title={post.title} subtitle={post.subtitle} />
 ))}
 </>
   )}
