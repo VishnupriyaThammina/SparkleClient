@@ -23,7 +23,7 @@ function handlePfp(e){
 const handleSubmit = async () => {
   try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://localhost:8080/users/update', {
+      const response = await axios.put('https://sparkle-server-lyart.vercel.app/users/update', {
           name,
           bio,
           pfp,
@@ -57,10 +57,7 @@ navigate('/profile')
     <label for="bio" style={{width:"25%"}}>Bio*</label>
     <input type="text" id="bio" onChange={handleBio} style={{width:'70%',height:"5vh"}}/>
     </Grid> 
-    <Grid item container alignItems="center" style={{width:'100%',margin:"1vh"}} >
-    <label for="bio" style={{width:"25%"}}>Image Url*</label>
-    <input type="text" id="pfp" onChange={handlePfp} style={{width:'70%',height:"5vh"}}/>
-    </Grid> 
+  
     </Grid>
 
     <Grid item container display="flex" justifyContent="center" alignItems="center" style={{width:"100%",height:"10vh"}}>
@@ -68,9 +65,7 @@ navigate('/profile')
 
   </Grid>
   <Grid item container display="flex" flexDirection="row" style={{width:"90%",paddingBottom:"3vh"}} >
-  <Grid item display="flex" justifyContent="flex-start" alignItems="center" style={{width:"30%",height:"100%"}}>
-<img src={pfp} style={{width:"100px", height:"100px",borderRadius:"100%"}} alt="pfp"/>
-  </Grid>
+
   <Grid display="flex" item justifyContent="center" container flexDirection="column" style={{width:"30%"}}>
 <Grid item><Typography variant='h6'>{name}</Typography></Grid>
 <Grid item><Typography variant='body1'>@vishhxh</Typography></Grid>

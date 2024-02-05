@@ -20,7 +20,7 @@ function Feed() {
           return;
         }
     
-        const response = await axios.get('http://localhost:8080/posts/', {
+        const response = await axios.get('https://sparkle-server-lyart.vercel.app/posts/', {
           headers: {
             token: `${token}`,
           },
@@ -58,7 +58,7 @@ fetchRecentData()
 
 {data.map((post) => {
     console.log(post);
-    return <Card key={post._id} thumbnail={post.thumbnail} id={post._id} title={post.title} subtitle={post.subtitle} />;
+    return <Card key={post._id} thumbnail={post.imgUp} id={post._id} title={post.title} subtitle={post.subtitle} />;
   })}  </>
   )}
 </Grid>

@@ -89,7 +89,7 @@ const navigate = useNavigate();
       }
      
     
-    const response = await axios.post('http://localhost:8080/posts/', formData, {
+    const response = await axios.post('https://sparkle-server-lyart.vercel.app/posts/', formData, {
       headers: {
         token: `${token}`,
         'Content-Type':'multipart/form-data',

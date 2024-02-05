@@ -34,8 +34,8 @@ if(token){
             <Route path="/" element={<Nav setAuth={setAuth} />} >
             <Route index element={<Home />} />
             <Route path="/feed" element={<Feed />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/create2" element={<Create2 />} />
+            <Route path="/create2" element={<Create />} />
+            <Route path="/create" element={<Create2 />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/editprofile" element={<Editprofile/>}/>

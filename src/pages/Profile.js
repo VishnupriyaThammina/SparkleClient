@@ -12,7 +12,7 @@ function Profile() {
     username:'',
     bio:'',
     name:'',
-    pfp:'',
+   
     
   })
   const [posts,setPosts] = useState([]);
@@ -26,7 +26,7 @@ function Profile() {
           return;
         }
   
-        const response = await axios.get('http://localhost:8080/users/current' ,{ headers: {
+        const response = await axios.get('https://sparkle-server-lyart.vercel.app/users/current' ,{ headers: {
           token: `${token}`,
       },});
   
@@ -52,7 +52,7 @@ function Profile() {
         return;
       }
 
-      const response = await axios.get('http://localhost:8080/posts/userposts' ,{ headers: {
+      const response = await axios.get('https://sparkle-server-lyart.vercel.app/posts/userposts' ,{ headers: {
         token: `${token}`,
     },});
     setPosts(response.data)
@@ -75,17 +75,13 @@ function Profile() {
 
 <Grid item display="flex" flexDirection="column" justifyContent="center" alignItems="center" style={{width:"100%",height:"45vh"}} >
 <Grid item container display="flex" flexDirection="row" style={{width:"90%",paddingBottom:"3vh"}} >
-  <Grid item display="flex" justifyContent="flex-start" alignItems="center" style={{width:"30%",height:"100%"}}>
 
-                                <img src={userData?.pfp} style={{ width: '100px', height: '100px', borderRadius: '100%' }} alt="Default Avatar" />
-                         
-  </Grid>
-  <Grid display="flex" item justifyContent="center" container flexDirection="column" style={{width:"30%"}}>
+  <Grid display="flex" item justifyContent="center" container flexDirection="column" style={{width:"70%"}}>
 <Grid item><Typography variant='h6'>{userData?.name}</Typography></Grid>
 <Grid item><Typography variant='body1'>@{userData?.username}</Typography></Grid>
 
   </Grid>
-  <Grid display="flex" justifyContent="center" alignItems="center" style={{width:"40%"}}>
+  <Grid display="flex" justifyContent="center" alignItems="center" style={{width:"30%"}}>
   <Link to="/editprofile">  <Button variant='contained' size="small" style={{backgroundColor:"#405DE6"}}>
     Edit profile
 </Button>    </Link>
@@ -93,7 +89,7 @@ function Profile() {
 </Grid>
 <Grid item container  display="flex" justifyContent="center" alignItems="center" className="Bio" style={{width:"100%"}} >
 <Grid container item display="flex" justifyContent="flex-start" alignItems="center" style={{width:"90%"}}>
-<Typography variant="h6">{userData?.bio}
+<Typography variant="body1">{userData?.bio}
 </Typography>
 </Grid>
  
@@ -112,7 +108,7 @@ function Profile() {
 
   {posts.map((post) => {
     console.log(post);
-    return <Card key={post._id} thumbnail={post.thumbnail} id={post._id} title={post.title} subtitle={post.subtitle} />;
+    return <Card key={post._id} thumbnail={post.imgUp} id={post._id} title={post.title} subtitle={post.subtitle} />;
 
   })}
  

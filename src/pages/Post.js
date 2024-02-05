@@ -30,7 +30,7 @@ useEffect(() => {
         return;
       }
 
-      const response = await axios.get('http://localhost:8080/users/current' ,{ headers: {
+      const response = await axios.get('https://sparkle-server-lyart.vercel.app/users/current' ,{ headers: {
         token: `${token}`,
     },});
 
@@ -53,7 +53,7 @@ try{
     return;
   }
 
-const res = await axios.get(`http://localhost:8080/posts/${id}` ,{ headers: {
+const res = await axios.get(`https://sparkle-server-lyart.vercel.app/posts/${id}` ,{ headers: {
   token: `${token}`,
 },})
 setPost(res.data);
